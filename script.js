@@ -1,9 +1,366 @@
-document.addEventListener("DOMContentLoaded",()=>{const y={1:{name:"Chain Cube 2048",appToken:"d1690a07-3780-4068-810f-9b5bbf2931b2",promoId:"b4170868-cef0-424f-8eb9-be0622e8e8e3",timing:21e3,attempts:10},2:{name:"Train Miner",appToken:"82647f43-3f87-402d-88dd-09a90025313f",promoId:"c4480ac7-e178-4973-8061-9ed5b2e17954",timing:21e3,attempts:15},3:{name:"Merge Away",appToken:"8d1cc2ad-e097-4b86-90ef-7a27e19fb833",promoId:"dc128d28-c45b-411c-98ff-ac7726fbaea4",timing:21e3,attempts:15},4:{name:"Twerk Race 3D",appToken:"61308365-9d16-4040-8bb0-2f4a4c69074c",promoId:"61308365-9d16-4040-8bb0-2f4a4c69074c",timing:21e3,attempts:20},5:{name:"Polysphere",appToken:"2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71",promoId:"2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71",timing:21e3,attempts:20},6:{name:"Mow and Trim",appToken:"ef319a80-949a-492e-8ee0-424fb5fc20a6",promoId:"ef319a80-949a-492e-8ee0-424fb5fc20a6",timing:21e3,attempts:15},7:{name:"Zoopolis",appToken:"b2436c89-e0aa-4aed-8046-9b0515e1c46b",promoId:"b2436c89-e0aa-4aed-8046-9b0515e1c46b",timing:21e3,attempts:15},8:{name:"Tile Trio",appToken:"e68b39d2-4880-4a31-b3aa-0393e7df10c7",promoId:"e68b39d2-4880-4a31-b3aa-0393e7df10c7",timing:21e3,attempts:15},9:{name:"Fluff Crusade",appToken:"112887b0-a8af-4eb2-ac63-d82df78283d9",promoId:"112887b0-a8af-4eb2-ac63-d82df78283d9",timing:21e3,attempts:20}},t=document.querySelectorAll(".game-option"),n=document.getElementById("keyCountGroup"),e=document.getElementById("keyRange"),a=document.getElementById("keyValue"),u=document.getElementById("startBtn"),g=document.getElementById("keyCountLabel"),b=document.getElementById("progressContainer"),h=document.getElementById("progressBar"),f=document.getElementById("progressText"),x=document.getElementById("progressLog"),k=document.getElementById("keyContainer"),v=document.getElementById("keysList"),T=document.getElementById("copyAllBtn"),L=document.getElementById("generatedKeysTitle"),o=document.getElementById("copyStatus");var d=document.getElementById("generateMoreBtn");const I=document.getElementById("telegramButton");I&&(I.style.display="block");let E=null;t.forEach(e=>{e.addEventListener("click",()=>{t.forEach(e=>e.classList.remove("selected")),e.classList.add("selected"),E=e.dataset.game,n.classList.remove("hidden"),n.scrollIntoView({behavior:"smooth",block:"center"}),u.classList.remove("hidden")})}),e.addEventListener("input",()=>{a.innerText=e.value}),u.addEventListener("click",async()=>{const i=parseInt(e.value);if(E){document.querySelector(".grid-container").style.display="none",n.style.display="none";let e=i,t=0,o=[];var a;o="all"===E?(e=Object.keys(y).length*i,t=Object.values(y).reduce((e,t)=>e+t.attempts*i,0),Object.values(y)):(a=parseInt(E),t=y[a].attempts*i,[y[a]]),g.innerText="تعداد کلیدها: "+e,h.style.width="0%",f.innerText="0%",x.innerText="... درحال شروع \n لطفا تا پایان عملیات منتظر بمانید ",b.classList.remove("hidden"),k.classList.add("hidden"),L.classList.add("hidden"),v.innerHTML="",T.classList.add("hidden"),u.classList.add("hidden"),u.disabled=!0;let d=0;const r=100,s={Polysphere:1.2,"Twerk Race 3D":1.2,"Tile Trio":1.2,"Fluff Crusade":1.2},c=r/t,l=(e,t,a,n)=>{"all"===E?(s[t]?d+=e*s[t]:d+=e,d>r&&(d=r)):(d+=e)>r&&(d=r),h.style.width=d+"%",f.innerText=Math.round(d)+"%",x.innerText=t+`: ${a}/${n} ... درحال آماده سازی 
- لطفا تا پایان عملیات منتظر بمانید`},m=async t=>{var e=w();let a;try{a=await B(e,t.appToken)}catch(e){return alert("Failed to login: "+e.message),u.disabled=!1,null}for(let e=0;e<t.attempts;e++){var n=await C(a,t.promoId);if(l(c,t.name,e+1,t.attempts),n)break;await S(t.timing)}try{var o=await M(a,t.promoId);return l(c,t.name,t.attempts,t.attempts),o}catch(e){return alert("Failed to generate key: "+e.message),null}};const p=await(async()=>{let e=[];if("all"===E){var t=o.map(t=>Promise.all(Array(i).fill().map(()=>m(t).then(e=>({key:e,gameName:t.name}))))),t=await Promise.all(t);e=t.flat()}else{const n=y[E];var a=[];for(let e=0;e<i;e++)a.push(m(n).then(e=>({key:e,gameName:n.name})));e=await Promise.all(a)}return e})();p.forEach(({key:e})=>{e&&(v.innerHTML+=`
-                <div class="key-item">
-                    <input type="text" value="${e}" readonly>
-                    <button class="copyKeyBtn" data-key="${e}">کپی</button>
-                </div>`)}),1<p.length&&T.classList.remove("hidden"),k.classList.remove("hidden"),L.classList.remove("hidden"),document.querySelectorAll(".copyKeyBtn").forEach(e=>{e.addEventListener("click",e=>{e=e.target.getAttribute("data-key");O(e)})}),T.addEventListener("click",()=>{let a="",n="";p.forEach(({key:e,gameName:t})=>{t!==n&&(n&&(a+="\n\n"),a+=`
---- ${t} ---
-`,n=t),a+=e+`
-`}),O(a,!0)});d=r,h.style.width=d+"%",f.innerText=Math.round(d)+"%",x.innerText="! تمام",n.style.display="block",document.querySelector(".grid-container").style.display="grid",u.classList.remove("hidden"),u.disabled=!1,n.style.display="block",I.style.display="block",document.querySelector(".grid-container").style.display="grid"}else alert("Please select a game first.")}),document.querySelector(".telegram-button").addEventListener("click",function(){alert("@mrx_0_3 ارتباط با طراح سایت")});const w=()=>{return Date.now()+"-"+Array.from({length:19},()=>Math.floor(10*Math.random())).join("")},B=async(e,t)=>{t=await fetch("https://api.gamepromo.io/promo/login-client",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({appToken:t,clientId:e,clientOrigin:"deviceid"})});if(t.ok)return(await t.json()).clientToken;throw new Error("Failed to login")},C=async(e,t)=>{e=await fetch("https://api.gamepromo.io/promo/register-event",{method:"POST",headers:{Authorization:"Bearer "+e,"Content-Type":"application/json"},body:JSON.stringify({promoId:t,eventId:i(),eventOrigin:"undefined"})});return!!e.ok&&(await e.json()).hasCode},M=async(e,t)=>{e=await fetch("https://api.gamepromo.io/promo/create-code",{method:"POST",headers:{Authorization:"Bearer "+e,"Content-Type":"application/json"},body:JSON.stringify({promoId:t})});if(e.ok)return(await e.json()).promoCode;throw new Error("Failed to generate key")},i=()=>"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(e){var t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)}),S=t=>new Promise(e=>setTimeout(e,t));window.addEventListener("load",function(){document.body.insertAdjacentHTML("beforeend",'<p style="display:none;">این سایت توسط mrx_0_3 طراحی شده است.</p>')});const O=(e,t=!1)=>{t=t?e+"\n\n Contact Creator: @mrx_0_3 \n":e;if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>{o.classList.remove("hidden"),setTimeout(()=>o.classList.add("hidden"),2e3)}).catch(e=>{console.error("Failed to copy text: ",e)});else{e=document.createElement("textarea");e.value=t,e.style.position="fixed",e.style.top="0",e.style.left="0",document.body.appendChild(e),e.focus(),e.select();try{document.execCommand("copy")&&(o.classList.remove("hidden"),setTimeout(()=>o.classList.add("hidden"),2e3))}catch(e){console.error("Fallback: Oops, unable to copy",e)}document.body.removeChild(e)}};d.addEventListener("click",()=>{n.classList.remove("hidden"),k.classList.add("hidden"),L.classList.add("hidden"),T.classList.add("hidden"),v.innerHTML=""})});
+document.addEventListener('DOMContentLoaded', () => {
+    const games = {
+        1: {
+            name: 'Chain Cube 2048',
+            appToken: 'd1690a07-3780-4068-810f-9b5bbf2931b2',
+            promoId: 'b4170868-cef0-424f-8eb9-be0622e8e8e3',
+            timing: 20000,
+            attempts: 15,
+        },
+        2: {
+            name: 'Train Miner',
+            appToken: '82647f43-3f87-402d-88dd-09a90025313f',
+            promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954',
+            timing: 20000,
+            attempts: 15,
+        },
+        3: {
+            name: 'Merge Away',
+            appToken: '8d1cc2ad-e097-4b86-90ef-7a27e19fb833',
+            promoId: 'dc128d28-c45b-411c-98ff-ac7726fbaea4',
+            timing: 20000,
+            attempts: 15,
+        },
+        4: {
+            name: 'Twerk Race 3D',
+            appToken: '61308365-9d16-4040-8bb0-2f4a4c69074c',
+            promoId: '61308365-9d16-4040-8bb0-2f4a4c69074c',
+            timing: 20000,
+            attempts: 20,
+        },
+        5: {
+            name: 'Polysphere',
+            appToken: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
+            promoId: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
+            timing: 20000,
+            attempts: 20,
+        },
+        6: {
+            name: 'Mow and Trim',
+            appToken: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
+            promoId: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
+            timing: 20000,
+            attempts: 20,
+        },
+        7: {
+            name: 'Zoopolis',
+            appToken: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+            promoId: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+            timing: 20000,
+            attempts: 20,
+        },
+        8: {
+            name: 'Tile Trio',
+            appToken: 'e68b39d2-4880-4a31-b3aa-0393e7df10c7',
+            promoId: 'e68b39d2-4880-4a31-b3aa-0393e7df10c7',
+            timing: 20000,
+            attempts: 20,
+        },
+        9: {
+            name: 'Fluff Crusade',
+            appToken: '112887b0-a8af-4eb2-ac63-d82df78283d9',
+            promoId: '112887b0-a8af-4eb2-ac63-d82df78283d9',
+            timing: 20000,
+            attempts: 30,
+        },
+        10: {
+            name: 'Stone Age',
+            appToken: '04ebd6de-69b7-43d1-9c4b-04a6ca3305af',
+            promoId: '04ebd6de-69b7-43d1-9c4b-04a6ca3305af',
+            timing: 22000,
+            attempts: 25,
+        }
+    };
+
+    const gameOptions = document.querySelectorAll('.game-option');
+    const keyCountGroup = document.getElementById('keyCountGroup');
+    const keyRange = document.getElementById('keyRange');
+    const keyValue = document.getElementById('keyValue');
+    const startBtn = document.getElementById('startBtn');
+    const keyCountLabel = document.getElementById('keyCountLabel');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const progressLog = document.getElementById('progressLog');
+    const keyContainer = document.getElementById('keyContainer');
+    const keysList = document.getElementById('keysList');
+    const copyAllBtn = document.getElementById('copyAllBtn');
+    const generatedKeysTitle = document.getElementById('generatedKeysTitle');
+    const copyStatus = document.getElementById('copyStatus');
+    const generateMoreBtn = document.getElementById('generateMoreBtn');
+
+    let selectedGame = null;
+
+    gameOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            gameOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            selectedGame = option.dataset.game;
+
+            keyCountGroup.classList.remove('hidden');
+            startBtn.classList.remove('hidden');
+
+            keyCountGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    });
+
+    keyRange.addEventListener('input', () => {
+        keyValue.innerText = keyRange.value;
+    });
+
+    startBtn.addEventListener('click', async () => {
+    const keyCount = parseInt(keyRange.value);
+    if (!selectedGame) {
+        alert('! لطفا یک بازی انتخاب کنید');
+        return;
+    }
+
+    if (selectedGame === 'all') {
+        const gamesArray = Object.values(games);
+        const totalKeysCount = keyCount * gamesArray.length;
+        keyCountLabel.innerText = `تعداد کلیدها: ${totalKeysCount}`;
+
+        const allKeys = [];
+
+        await Promise.all(gamesArray.map(async (game) => {
+            const keys = await generateKeysForGame(game, keyCount);
+            allKeys.push(...keys);
+        }));
+
+        displayKeys(allKeys);
+    } else {
+        const gameChoice = parseInt(selectedGame);
+        const game = games[gameChoice];
+        const keys = await generateKeysForGame(game, keyCount);
+        keyCountLabel.innerText = `تعداد کلیدها: ${keys.length}`;
+        displayKeys(keys);
+    }
+});
+
+const generateKeysForGame = async (game, keyCount) => {
+    document.querySelector('.grid-container').style.display = 'none';
+    keyCountGroup.style.display = 'none';
+
+    keyCountLabel.innerText = `تعداد کلیدها: ${keyCount}`;
+
+    progressBar.style.width = '0%';
+    progressText.innerText = '0%';
+    progressLog.innerText = `${game.name}: ... درحال ساخت کلید\n لطفا تا پایان عملیات منتظر بمانید`;
+    progressContainer.classList.remove('hidden');
+    keyContainer.classList.add('hidden');
+    generatedKeysTitle.classList.add('hidden');
+    keysList.innerHTML = '';
+    copyAllBtn.classList.add('hidden');
+    startBtn.classList.add('hidden');
+    startBtn.disabled = true;
+
+    let progress = 0;
+    const updateProgress = (increment, message) => {
+        progress += increment;
+        progressBar.style.width = `${progress}%`;
+        progressText.innerText = `${progress}%`;
+        progressLog.innerText = message;
+    };
+
+    const generateKeyProcess = async () => {
+        const clientId = generateClientId();
+        let clientToken;
+        try {
+            clientToken = await login(clientId, game.appToken);
+        } catch (error) {
+            alert(`Failed to login: ${error.message}`);
+            startBtn.disabled = false;
+            return null;
+        }
+
+        for (let i = 0; i < game.attempts; i++) {
+            const hasCode = await emulateProgress(clientToken, game.promoId);
+            updateProgress((100 / game.attempts) / keyCount, `${game.name}: ${i + 1}/${game.attempts} ... درحال آماده سازی\n لطفا تا پایان عملیات منتظر بمانید`);
+            if (hasCode) {
+                break;
+            }
+            await sleep(game.timing);
+        }
+
+        try {
+            const key = await generateKey(clientToken, game.promoId);
+            updateProgress(100 / keyCount, `${game.name}: ... درحال ساخت کلید\n لطفا تا پایان عملیات منتظر بمانید`);
+            return key;
+        } catch (error) {
+            alert(`Failed to generate key: ${error.message}`);
+            return null;
+        }
+    };
+
+    const keys = await Promise.all(Array.from({ length: keyCount }, generateKeyProcess));
+
+    return keys.filter(key => key);
+};
+
+    const displayKeys = (allKeys) => {
+    const groupedKeys = {};
+
+    allKeys.forEach((key) => {
+        const [prefix] = key.split('-');
+        if (!groupedKeys[prefix]) {
+            groupedKeys[prefix] = [];
+        }
+        groupedKeys[prefix].push(key);
+    });
+
+    const formattedKeys = Object.entries(groupedKeys).map(([game, keys]) => {
+        const gameName = games[Object.keys(games).find(id => games[id].name.toUpperCase().includes(game.toUpperCase()))]?.name || game;
+        return `\n--- ${gameName} ---\n${keys.map(k => `\`${k}\``).join('\n')}`;
+    }).join('\n\n');
+
+    const footer = `\n\nContact Creator: \`mrx_0_3\``;
+    const finalTextToCopy = formattedKeys + footer;
+
+    keysList.innerHTML = allKeys.length > 0 ?
+        allKeys.map(key =>
+            `<div class="key-item">
+                <input type="text" value="\`${key}\`" readonly>
+                <button class="copyKeyBtn" data-key="\`${key}\`">کپی</button>
+            </div>`
+        ).join('') :
+        '<p>!هیچ کلیدی ساخته نشد <br> به نظر می‌رسد به دلیل ساخت مکرر کلیدها، با ارور لاگین مواجه شده‌اید. لطفا حافظه کش مرورگر را پاک کرده، از یک فیلترشکن مناسب استفاده و بعد از چند دقیقه دوباره امتحان کنید</p>';
+
+    copyAllBtn.classList.toggle('hidden', allKeys.length === 0);
+    keyContainer.classList.remove('hidden');
+    generatedKeysTitle.classList.remove('hidden');
+    startBtn.classList.remove('hidden');
+    keyCountGroup.classList.remove('hidden');
+    keyCountGroup.style.display = 'block';
+    startBtn.disabled = false;
+
+    document.querySelectorAll('.copyKeyBtn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const key = event.target.getAttribute('data-key');
+            copyToClipboard(key);
+        });
+    });
+
+    copyAllBtn.addEventListener('click', () => {
+        copyToClipboard(finalTextToCopy);
+    });
+
+    progressBar.style.width = '100%';
+    progressText.innerText = '100%';
+    progressLog.innerText = '! تمام';
+
+    startBtn.classList.remove('hidden');
+    keyCountGroup.classList.remove('hidden');
+    document.querySelector('.grid-container').style.display = 'grid';
+    startBtn.disabled = false;
+};
+
+    const generateClientId = () => {
+        const timestamp = Date.now();
+        const randomNumbers = Array.from({ length: 19 }, () => Math.floor(Math.random() * 10)).join('');
+        return `${timestamp}-${randomNumbers}`;
+    };
+
+    const login = async (clientId, appToken) => {
+        const response = await fetch('https://api.gamepromo.io/promo/login-client', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                appToken,
+                clientId,
+                clientOrigin: 'deviceid'
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to login');
+        }
+
+        const data = await response.json();
+        return data.clientToken;
+    };
+
+    const emulateProgress = async (clientToken, promoId) => {
+        const response = await fetch('https://api.gamepromo.io/promo/register-event', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${clientToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                promoId,
+                eventId: generateUUID(),
+                eventOrigin: 'undefined'
+            })
+        });
+
+        if (!response.ok) {
+            return false;
+        }
+
+        const data = await response.json();
+        return data.hasCode;
+    };
+
+    const generateKey = async (clientToken, promoId) => {
+        const response = await fetch('https://api.gamepromo.io/promo/create-code', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${clientToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                promoId
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to generate key');
+        }
+
+        const data = await response.json();
+        return data.promoCode;
+    };
+
+    const generateUUID = () => {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    };
+
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    const copyToClipboard = (text) => {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+                copyStatus.classList.remove('hidden');
+                setTimeout(() => copyStatus.classList.add('hidden'), 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        } else {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.top = '0';
+            textArea.style.left = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    copyStatus.classList.remove('hidden');
+                    setTimeout(() => copyStatus.classList.add('hidden'), 2000);
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+
+            document.body.removeChild(textArea);
+        }
+    };
+});
