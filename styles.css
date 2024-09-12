@@ -20,8 +20,8 @@ body {
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 360px;
+    padding: 30px;
+    max-width: 400px;
     width: 100%;
     text-align: center;
     max-height: 90vh;
@@ -71,14 +71,14 @@ h1 {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* ۳ ستون */
-    gap: 10px; /* فاصله بین ستون‌ها و ردیف‌ها */
-    margin-bottom: 10px; /* فاصله از پایین */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .game-option {
     border: 2px solid #ddd;
-    border-radius: 8px; /* کاهش رادیوس برای شکل مربعی‌تر */
+    border-radius: 8px;
     padding: 8px;
     text-align: center;
     cursor: pointer;
@@ -88,8 +88,8 @@ h1 {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 100%; /* استفاده از عرض کامل ستون */
-    aspect-ratio: 1; /* حفظ نسبت عرض به ارتفاع به صورت مربع */
+    width: 100%;
+    aspect-ratio: 1;
     overflow: hidden;
     background-color: #fff;
     animation: slideInScale 0.5s ease-out;
@@ -345,20 +345,20 @@ button:hover {
     font-weight: bold;
     font-size: 12px;
     margin-top: 15px;
-    animation: rgbAnimation 2s infinite;
+    animation: rgbAnimation 3s infinite;
 }
 
 .telegram-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff; /* رنگ پس‌زمینه پیش‌فرض */
-    color: #333; /* رنگ متن پیش‌فرض */
+    background-color: #ffffff;
+    color: #333;
     text-decoration: none;
-    padding: 10px 20px; /* پدینگ مناسب */
-    border-radius: 50px; /* رادیوس دکمه به صورت نیم‌دایره */
-    font-size: 14px; /* سایز فونت مناسب */
-    font-weight: 500; /* وزن فونت متوسط */
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
     width: fit-content;
     margin: 10px;
     white-space: nowrap;
@@ -369,23 +369,23 @@ button:hover {
 }
 
 .telegram-button:hover {
-    background-color: #f5f7fa; /* رنگ پس‌زمینه در هاور */
-    color: #ff6f00; /* رنگ متن در هاور */
+    background-color: #f5f7fa;
+    color: #ff6f00;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 0 12px rgba(255, 111, 0, 0.5); /* سایه RGB با رنگ نارنجی */
-    transform: scale(1.05); /* تغییر مقیاس در هاور */
+    transform: scale(1.05);
 }
 
 .telegram-button:active {
-    background-color: #ffffff; /* رنگ پس‌زمینه هنگام کلیک */
-    color: #ff6f00; /* رنگ متن هنگام کلیک */
+    background-color: #ffffff;
+    color: #ff6f00;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 111, 0, 0.6); /* سایه RGB با رنگ نارنجی */
-    transform: scale(0.98); /* تغییر مقیاس هنگام کلیک */
+    transform: scale(0.98);
 }
 
 .telegram-icon {
-    width: 20px; /* اندازه آیکن */
+    width: 20px;
     height: 20px;
-    margin-right: 8px; /* فاصله از متن */
+    margin-right: 8px;
     color: #00aced;
     flex-shrink: 0;
 }
