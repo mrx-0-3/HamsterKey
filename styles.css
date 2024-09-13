@@ -87,15 +87,17 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     box-sizing: border-box;
-    width: 100%;
     aspect-ratio: 1;
     overflow: hidden;
     background-color: #fff;
     animation: slideInScale 0.5s ease-out;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 120px;
 }
+
 
 .game-option.selected {
     transform: scale(1.05);
@@ -105,10 +107,11 @@ h1 {
 
 .game-option img {
     width: 100%;
-    max-height: 120px;
+    height: auto;
     object-fit: cover;
-    margin-bottom: 8px;
     border-radius: 6px;
+    margin-bottom: 5px;
+    flex-shrink: 0;
 }
 
 .game-option p {
@@ -116,11 +119,12 @@ h1 {
     color: #555;
     font-size: 10px;
     margin: 0;
-    line-height: 1.2;
+    line-height: 1.0;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .game-option:hover, .game-option.selected {
