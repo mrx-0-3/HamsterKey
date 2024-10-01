@@ -50,72 +50,72 @@ document.addEventListener('DOMContentLoaded', () => {
             attempts: 20,
         },
         8: {
-            name: 'Tile Trio',
-            appToken: 'e68b39d2-4880-4a31-b3aa-0393e7df10c7',
-            promoId: 'e68b39d2-4880-4a31-b3aa-0393e7df10c7',
-            timing: 20000,
-            attempts: 20,
-        },
-        9: {
             name: 'Fluff Crusade',
             appToken: '112887b0-a8af-4eb2-ac63-d82df78283d9',
             promoId: '112887b0-a8af-4eb2-ac63-d82df78283d9',
             timing: 20000,
             attempts: 30,
         },
-        10: {
+        9: {
             name: 'Stone Age',
             appToken: '04ebd6de-69b7-43d1-9c4b-04a6ca3305af',
             promoId: '04ebd6de-69b7-43d1-9c4b-04a6ca3305af',
             timing: 22000,
             attempts: 25,
         },
-        11: {
+        10: {
             name: 'Bouncemasters',
             appToken: 'bc72d3b9-8e91-4884-9c33-f72482f0db37',
             promoId: 'bc72d3b9-8e91-4884-9c33-f72482f0db37',
             timing: 20000,
             attempts: 30,
         },
-        12: {
+        11: {
             name: 'Hide Ball',
             appToken: '4bf4966c-4d22-439b-8ff2-dc5ebca1a600',
             promoId: '4bf4966c-4d22-439b-8ff2-dc5ebca1a600',
             timing: 20000,
             attempts: 30,
         },
-        13: {
+        12: {
             name: 'Pin Out Master',
             appToken: 'd2378baf-d617-417a-9d99-d685824335f0',
             promoId: 'd2378baf-d617-417a-9d99-d685824335f0',
             timing: 20000,
             attempts: 30,
         },
-        14: {
+        13: {
             name: 'Count Masters',
             appToken: '4bdc17da-2601-449b-948e-f8c7bd376553',
             promoId: '4bdc17da-2601-449b-948e-f8c7bd376553',
             timing: 20000,
             attempts: 30,
         },
-        15: {
+        14: {
             name: 'Infected Frontier',
             appToken: 'eb518c4b-e448-4065-9d33-06f3039f0fcb',
             promoId: 'eb518c4b-e448-4065-9d33-06f3039f0fcb',
             timing: 20000,
             attempts: 30,
         },
-        16: {
+        15: {
             name: 'Among Water',
             appToken: 'daab8f83-8ea2-4ad0-8dd5-d33363129640',
             promoId: 'daab8f83-8ea2-4ad0-8dd5-d33363129640',
             timing: 20000,
             attempts: 30,
         },
-        17: {
+        16: {
             name: 'Factory World',
             appToken: 'd02fc404-8985-4305-87d8-32bd4e66bb16',
             promoId: 'd02fc404-8985-4305-87d8-32bd4e66bb16',
+            timing: 20000,
+            attempts: 30,
+        },
+        17: {
+            name: 'Cooking Stories',
+            appToken: 'ed526e8c-e6c8-40fd-b72a-9e78ff6a2054',
+            promoId: 'ed526e8c-e6c8-40fd-b72a-9e78ff6a2054',
             timing: 20000,
             attempts: 30,
         }
